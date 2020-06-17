@@ -1,0 +1,26 @@
+{% extends "frontend/base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+</head>
+<body>
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>udin gila</p>
+            </div>
+        </div>
+    </div>
+
+    {% block footer %}
+        {% include "frontend/partials/footer.html" %}
+    {% endblock footer %}
+
+{% endblock body %}
+</body>
+</html>
