@@ -82,7 +82,7 @@ DATABASES = {
         'USER': 'idris',
         'PASSWORD': 'idrisaja',
         # connect ip address docker container kiosDB
-        'HOST': '172.21.0.2',
+        'HOST': '172.18.0.2',
         'PORT': '',
     }
 }
