@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.dashboard',
+    'apps.web',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #STATIC_ROOT = '/home/idris/workspace/belajar/kios/static'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = [os.path.join(BASE_DIR, 'media')]
