@@ -21,3 +21,13 @@ services:
       - "6543:6543"
     volumes:
       - /var/lib/postgresql/data
+
+  pgadmin:
+    container_name: kiosPgadmin
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: kios@mail.com
+      PGADMIN_DEFAULT_PASSWORD: SuperSecret
+    ports:
+      - "80:80"

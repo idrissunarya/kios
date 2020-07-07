@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'apps.dashboard',
     'apps.web',
+    'apps.api',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +86,7 @@ DATABASES = {
         'USER': 'idris',
         'PASSWORD': 'idrisaja',
         # connect ip address docker container kiosDB
-        'HOST': '172.18.0.2',
+        'HOST': '172.18.0.3',
         'PORT': '',
     }
 }
@@ -125,6 +127,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 #STATIC_ROOT = '/home/idris/workspace/belajar/kios/static'

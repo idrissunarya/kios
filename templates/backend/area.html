@@ -1,0 +1,30 @@
+{% extends 'frontend/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Register
+{% endblock title %}
+
+{% block body%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="col-md-6 offset-md-3">Form Register Member</h3>
+      <form method="POST" class="bootstrap4">
+        
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6 offset-md-3">
+            {{ form | crispy }}
+          </div>
+          <div class="col-md-2 offset-md-5">
+            <button class="btn btn-success btn-sm btn-block">Register Now</button>
+          </div>
+        </div>
+    
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock body %}
