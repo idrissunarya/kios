@@ -11,19 +11,28 @@
   <div class="container">
       <div class="row">
           <div class="col-md-12">
-            <h3 class="col-md-4 offset-md-4 alert alert-success text-center">Login Administrator<hr></h3>
-              <form method="POST" class="bootstrap4">
+            <div class="col-md-4 offset-md-4 alert alert-warning">
+                <p class="text-center">Login Dashboard</p><hr>
+              <form method="POST" action="{% url 'login' %}" class="bootstrap4">
                 {% csrf_token %}
                 <div class="form-row">
-                    <div class="form-group col-md-4 offset-md-4 alert alert-success">
+                    <div class="form-group col-md-12">
                         {{ form | crispy }}
                         <div class="col-md-6 offset-md-3">
                             <button class="btn btn-success btn-sm btn-block">Login</button>
                         </div>
-                    </div>
-                    
+                    </div>    
                 </div>
               </form>
+            </div>
+
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    <p {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
 
           </div>
       </div>

@@ -22,17 +22,27 @@
         <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
     {% endblock stylesheets %}
 
+    {% block extra-stylesheets %}
+
+    {% endblock extra-stylesheets %}
+
 </head>
 
+<body>
 {% block body %}
 
     {% block navbar %}
     {% endblock navbar %}
 
+    {% block content %}
+    {% endblock content %}
+
     {% block footer %}
     {% endblock footer %}
 
 {% endblock body %}
+
+</body>
 
 
 {% block javascripts %}
