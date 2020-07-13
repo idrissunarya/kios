@@ -37,11 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'crispy_forms',
     'apps.dashboard',
     'apps.web',
     'apps.api',
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +95,7 @@ DATABASES = {
         'USER': 'idris',
         'PASSWORD': 'idrisaja',
         # connect ip address docker container kiosDB
-        'HOST': '172.18.0.3',
+        'HOST': '172.18.0.2',
         'PORT': '',
     }
 }

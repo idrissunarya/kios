@@ -1,10 +1,24 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
 from .forms import LoginForm, RegisterForm, MaterialForm, StorageForm
-from apps.api.models import Member, Storage
+from apps.api.models import Member, Storage, Material
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+
+from rest_framework import viewsets
+from apps.api.serializers import MaterialSerializer, MemberSerializer
+from rest_framework import generics
+
+class MaterialListView(generics.ListAPIView):
+    queryset = Material.objects.all().order_by('id')
+    serializer_class = MaterialSerializer
+
+class MemberListView(generics.ListAPIView):
+    queryset = Member.objects.all().order_by('username')
+    serializer_class = MemberSerializer
+
 
 
 def login(request):

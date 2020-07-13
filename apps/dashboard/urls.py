@@ -1,5 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+
+from rest_framework import routers, serializers, viewsets
+from .views import MaterialListView, MemberListView
+
+#router = routers.DefaultRouter()
+#router.register('materials', views.MaterialViewSet)
 
 
 urlpatterns = [
@@ -10,4 +16,8 @@ urlpatterns = [
     path('storage/', views.storage, name='storage'),
     path('storage_list/', views.storage_list, name='storage_list'),
     path('material/', views.material, name='material'),
+
+    path('api-material/', MaterialListView.as_view(), name='material-all'),
+    path('api-member/', MemberListView.as_view(), name='member-all')
+
 ]
