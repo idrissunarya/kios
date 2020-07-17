@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'crispy_forms',
+    'django_tables2',
     'apps.dashboard',
     'apps.web',
     'apps.api',
@@ -95,7 +96,7 @@ DATABASES = {
         'USER': 'idris',
         'PASSWORD': 'idrisaja',
         # connect ip address docker container kiosDB
-        'HOST': '172.18.0.2',
+        'HOST': '172.18.0.3',
         'PORT': '',
     }
 }

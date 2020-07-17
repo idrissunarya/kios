@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Product, Member, Storage, Material
+from . models import Product, Member, Storage, Material, Location, Personil
 
 class ProductModelAdmin (admin.ModelAdmin):
     list_display = ['name']
@@ -35,3 +35,22 @@ class MaterialModelAdmin (admin.ModelAdmin):
         model = Material
 
 admin.site.register(Material, MaterialModelAdmin)
+
+
+class LocationModelAdmin(admin.ModelAdmin):
+    list_display = ['city']
+
+    class Meta:
+        model = Location
+
+admin.site.register(Location, LocationModelAdmin)
+
+
+
+class PersonilModelAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name']
+
+    class Meta:
+        model = Personil
+
+admin.site.register(Personil, PersonilModelAdmin)

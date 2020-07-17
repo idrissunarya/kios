@@ -1,9 +1,12 @@
 from django.db import models
 import uuid
 
+
 class Material(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=128)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
         return self.name
@@ -56,5 +59,29 @@ class Storage(models.Model):
 
     def __str__(self):
         return self.unit
+
+class Location(models.Model):
+    city = models.CharField(max_length=24)
+
+    def __str__(self):
+        return self.city
+
+class Personil(models.Model):
+    first_name = models.CharField(max_length=512)
+    last_name = models.CharField(max_length=512)
+    company_name = models.CharField(max_length=512)	
+    address = models.CharField(max_length=512)	
+    city = models.CharField(max_length=512)
+    county = models.CharField(max_length=512)
+    state = models.CharField(max_length=512)
+    zip	= models.IntegerField(max_length=10)
+    phone1 = models.CharField(max_length=512)
+    phone2	= models.CharField(max_length=512)
+    email = models.EmailField()
+    web = models.CharField(max_length=512)
+
+    def __str__(self):
+        return self.Personil
+
 
 

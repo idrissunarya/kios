@@ -1,0 +1,16 @@
+{% if user.is_authenticated  %}
+
+    <h3> List Materials</h3>
+
+    {% for obj in queryset %}
+        <li> {{ obj.name }}</li>
+        <li> {{ obj.created }}</li>
+        <li> {{ obj.updated }}</li>
+        
+    {% endfor %}
+
+{% else %}
+
+    <p>Page list tidak bisa di access</p>
+
+{% endif %}
