@@ -67,6 +67,7 @@ class Location(models.Model):
         return self.city
 
 class Personil(models.Model):
+    id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=512)
     last_name = models.CharField(max_length=512)
     company_name = models.CharField(max_length=512)	
@@ -82,6 +83,21 @@ class Personil(models.Model):
 
     def __str__(self):
         return self.Personil
+
+class Citie(models.Model):
+    id = models.AutoField(primary_key=True)
+    city = models.CharField(max_length=256)
+    city_ascii = models.CharField(max_length=256)
+    lat = models.CharField(max_length=256)
+    lng	= models.CharField(max_length=256)
+    country	= models.CharField(max_length=256)
+    iso2 = models.CharField(max_length=2)
+    iso3 = models.CharField(max_length=3)
+    admin_name = models.CharField(max_length=256)
+    capital	= models.CharField(max_length=64)
+    population = models.CharField(max_length=256)
+
+
 
 
 
