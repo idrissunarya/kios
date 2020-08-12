@@ -20,7 +20,7 @@ services:
     ports:
       - "6543:6543"
     volumes:
-      - /var/lib/postgresql/data
+      - ./db-kios:/var/lib/postgresql/data/
 
   pgadmin:
     container_name: kiosPgadmin
@@ -29,5 +29,6 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: kios@mail.com
       PGADMIN_DEFAULT_PASSWORD: SuperSecret
+      PGADMIN_LISTEN_PORT: '8090'
     ports:
-      - "80:80"
+      - "8090:8090"
