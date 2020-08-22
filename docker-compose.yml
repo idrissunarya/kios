@@ -1,14 +1,6 @@
 version: '3'
 
 services:
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8080
-    volumes:
-      - .:/kios
-    ports:
-      - "8080:8080"
-
   db:
     container_name: kiosDB
     image: postgres:11
@@ -17,10 +9,14 @@ services:
       POSTGRES_DB: kios
       POSTGRES_USER: idris
       POSTGRES_PASSWORD: idrisaja
+      POSTGRES_LISTEN_PORT: '5432'
     ports:
-      - "6543:6543"
+      - "5432:5432"
     volumes:
       - ./db-kios:/var/lib/postgresql/data/
+    networks:
+      net-core:
+        ipv4_address: 172.18.0.3
 
   pgadmin:
     container_name: kiosPgadmin
@@ -32,3 +28,41 @@ services:
       PGADMIN_LISTEN_PORT: '8090'
     ports:
       - "8090:8090"
+    networks:
+      net-core:
+        ipv4_address: 172.18.0.4
+
+  redis:
+    container_name: redis_kios
+    image: redis:6
+    command: redis-server /redis/redis.conf
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/redis.conf:/redis/redis.conf
+    networks:
+      net-core:
+        ipv4_address: 172.18.0.5
+
+  web:
+    build: .
+    command: python manage.py migrate
+    command: python manage.py runserver 0.0.0.0:8080
+    volumes:
+      - .:/kios
+    ports:
+      - "8080:8080"
+    networks:
+      net-core:
+        ipv4_address: 172.18.0.2
+    depends_on:
+      - redis
+      - db
+
+networks:
+  net-core:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
