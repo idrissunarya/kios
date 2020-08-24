@@ -61,30 +61,6 @@ class Storage(models.Model):
         return self.unit
 
 class Location(models.Model):
-    city = models.CharField(max_length=24)
-
-    def __str__(self):
-        return self.city
-
-class Personil(models.Model):
-    id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=512)
-    last_name = models.CharField(max_length=512)
-    company_name = models.CharField(max_length=512)	
-    address = models.CharField(max_length=512)	
-    city = models.CharField(max_length=512)
-    county = models.CharField(max_length=512)
-    state = models.CharField(max_length=512)
-    zip	= models.IntegerField(max_length=10)
-    phone1 = models.CharField(max_length=512)
-    phone2	= models.CharField(max_length=512)
-    email = models.EmailField()
-    web = models.CharField(max_length=512)
-
-    def __str__(self):
-        return self.Personil
-
-class Citie(models.Model):
     id = models.AutoField(primary_key=True)
     city = models.CharField(max_length=256)
     city_ascii = models.CharField(max_length=256)
@@ -96,6 +72,9 @@ class Citie(models.Model):
     admin_name = models.CharField(max_length=256)
     capital	= models.CharField(max_length=64)
     population = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.city
 
 
 
