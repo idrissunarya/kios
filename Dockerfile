@@ -2,6 +2,7 @@ FROM python:3
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /kios
 RUN mkdir /kios/db-kios
+RUN mkdir /kios/redis
 WORKDIR /kios
 COPY requirements.txt /kios/
 RUN pip install --upgrade pip

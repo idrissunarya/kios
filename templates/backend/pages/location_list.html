@@ -1,0 +1,222 @@
+{% extends 'backend/base.html' %}
+
+{% load static %}
+
+{% block title %} List Location {% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block extra_stylesheets %}
+  <!-- CSS Datatables -->
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="{% static 'dashboard/build/css/jsnotif.min.css' %}" />
+
+{% endblock extra_stylesheets %}
+
+{% block body %}
+
+{% if user.is_authenticated  %}
+
+<body class="nav-md">
+   <div class="container body">
+      <div class="main_container">
+        {% block navbar %}
+            {% include 'backend/partials/navbar.html' %}
+        {% endblock navbar %}
+
+        <div class="right_col" role="main">
+                <div class="form-row">
+
+                    <!-- modal add Location -->
+                    <div class="modal fade" id="addLocation" tabindex="-1" role="dialog">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Add Location Form</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                              <form method="POST" class="bootstrap4">
+                                  {% csrf_token %}
+                                {{ form | crispy }}
+                              </form>
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-success btn-sm fa fa-plus" data-toggle="modal" title="Add Location" data-target="#addLocation"> </button>
+                                <h5 class="text-center">List Locations</h5>
+                            </div>
+                        </div>
+
+                      <table id="bootstrapDataTable" class="table">
+                        <thead>
+                          <th>
+                            <input type="checkbox" id="checkall"/>
+                          </th>
+                          <th>City</th>
+                          <th>City_ascii</th>
+                          <th>lat</th>
+                          <th>lng</th>
+                          <th>Country</th>
+                          <th>iso2</th>
+                          <th>iso3</th>
+                          <th>Admin_name</th>
+                          <th>Capital</th>
+                          <th>population</th>
+                          <th>Detail</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </thead>
+                        <tbody>
+                          {% for obj in queryset %}
+                            <tr>
+                              <td>
+                                <input type="checkbox" class="checkthis" />
+                              </td>
+                                <td>{{ obj.city }}</td>
+                                <td>{{ obj.city_ascii }}</td>
+                                <td>{{ obj.lat }}</td>
+                                <td>{{ obj.lng }}</td>
+                                <td>{{ obj.country }}</td>
+                                <td>{{ obj.iso2 }}</td>
+                                <td>{{ obj.iso3 }}</td>
+                                <td>{{ obj.admin_name }}</td>
+                                <td>{{ obj.capital }}</td>
+                                <td>{{ obj.population }}</td>
+                                <td>
+                                <p data-placement="top" data-toggle="tooltip" title="detail">
+                                  <a href="/detail_location/{{ obj.id }}"
+                                  class="btn btn-info btn-sm fa fa-eye"></a>
+                                </p>
+                              </td>
+                              <td>
+                                <p data-placement="top" data-toggle="tooltip" title="Edit">
+                                  <a href="/edit/{{ obj.id }}"
+                                  class="btn btn-warning btn-sm fa fa-pencil" data-title="Edit" data-toggle="modal"
+                                  data-target="#edit"></a>
+                                </p>
+                              </td>
+                              <td>
+                                <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                  <a class="btn btn-danger btn-sm fa fa-trash text-light" onclick="sendData('{{ obj.id }}', '{{ obj.city }}')" ></a>
+                                </p>
+                              </td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div>
+        </div>
+
+      </div>
+    </div>
+
+    {% block javascripts %}
+            <!-- jQuery -->
+            <script src="{% static 'dashboard/vendors/jquery/dist/jquery.min.js' %}"></script>
+            <!-- Bootstrap -->
+            <script src="{% static 'dashboard/vendors/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+            <!-- FastClick -->
+            <script src="{% static 'dashboard/vendors/fastclick/lib/fastclick.js' %}"></script>
+            <!-- NProgress -->
+            <script src="{% static 'dashboard/vendors/nprogress/nprogress.js' %}"></script>
+            <!-- Chart.js -->
+            <script src="{% static 'dashboard/vendors/Chart.js/dist/Chart.min.js' %}"></script>
+            <!-- gauge.js -->
+            <script src="{% static 'dashboard/vendors/gauge.js/dist/gauge.min.js' %}"></script>
+            <!-- bootstrap-progressbar -->
+            <script src="{% static 'dashboard/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+            <!-- iCheck -->
+            <script src="{% static 'dashboard/vendors/iCheck/icheck.min.js' %}"></script>
+            <!-- Skycons -->
+            <script src="{% static 'dashboard/vendors/skycons/skycons.js' %}"></script>
+            <!-- Flot -->
+            <script src="{% static 'dashboard/vendors/Flot/jquery.flot.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/Flot/jquery.flot.pie.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/Flot/jquery.flot.time.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/Flot/jquery.flot.stack.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/Flot/jquery.flot.resize.js' %}"></script>
+            <!-- Flot plugins -->
+            <script src="{% static 'dashboard/vendors/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/flot-spline/js/jquery.flot.spline.min.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/flot.curvedlines/curvedLines.js' %}"></script>
+            <!-- DateJS -->
+            <script src="{% static 'dashboard/vendors/DateJS/build/date.js' %}"></script>
+            <!-- JQVMap -->
+            <script src="{% static 'dashboard/vendors/jqvmap/dist/jquery.vmap.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js' %}"></script>
+            <!-- bootstrap-daterangepicker -->
+            <script src="{% static 'dashboard/vendors/moment/min/moment.min.js' %}"></script>
+            <script src="{% static 'dashboard/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+            <!-- Custom Theme Scripts -->
+            <script src="{% static 'dashboard/build/js/custom.min.js' %}"></script>
+
+            <!-- Datatable js -->
+            <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+            <!-- Javascript confirm -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+         {% endblock javascripts %}
+
+         <script>
+           $(document).ready(function() {
+             $('#bootstrapDataTable').DataTable({
+              "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "all"]],
+                "iDisplayLength": 10
+              }
+             );
+           });
+
+          function sendData(id, city){
+            console.log(id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.value) {
+                fetch('/delete_location/'+id)
+                  .then(response => response.json())
+                    .then(data =>{
+                      Swal.fire(
+                        'Deleted!',
+                        'Your '+name  +' has been deleted.',
+                        'success'
+                      )
+                      console.log('delete location '+name +' successfully');
+                      window.location.reload()
+                    });
+              }
+            })
+          }
+         </script>
+
+</body>
+
+{% else %}
+<p>Page error</p>
+
+{% endif %}
+
+{% endblock body %}

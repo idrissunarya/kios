@@ -84,6 +84,18 @@ def register(request):
         return render(request, 'backend/area.html',{'form':form})
 
 # def CRUD Cities
+def location_list(request):
+    if request.method == 'POST':
+        form = LocationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('location_list')
+    else:
+        form = LocationForm()
+        queryset = Location.objects.all()
+        context = {'queryset': queryset, 'form':form}
+        return render(request, 'backend/pages/location_list.html', context)
+
 def location_add(request):
     if request.method == 'POST':
         form = LocationForm(request.POST)
@@ -91,9 +103,8 @@ def location_add(request):
             form.save()
             return redirect('location_add')
     else:
-        queryset = Location.objects.all()
         form = LocationForm()
-        context = {'queryset':queryset, 'form': form}
+        context = {'form': form}
         return render(request, 'backend/pages/add_location.html', context)
 
 def delete_location(request,id):

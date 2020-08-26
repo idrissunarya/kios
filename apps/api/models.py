@@ -76,6 +76,16 @@ class Location(models.Model):
     def __str__(self):
         return self.city
 
+class Currency(models.Model):
+    id = models.AutoField(primary_key=True)
+    country = models.CharField(max_length=128)
+    currency = models.CharField(max_length=128)
+    code = models.CharField(max_length=128)
+    symbol = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.id
+
 
 
 

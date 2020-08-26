@@ -13,6 +13,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
+      # - /var/lib/pgsql/11/data:/var/lib/postgresql/data/
       - ./db-kios:/var/lib/postgresql/data/
     networks:
       net-core:
@@ -47,7 +48,6 @@ services:
 
   web:
     build: .
-    command: python manage.py migrate
     command: python manage.py runserver 0.0.0.0:8080
     volumes:
       - .:/kios

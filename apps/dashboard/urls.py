@@ -28,11 +28,12 @@ urlpatterns = [
     path('material_success/', views.material_success, name='material_success'),
 
     # Crud URL Location
+    path('location_list/', views.location_list, name='location_list'),
     path('location_add/', views.location_add, name='location_add'),
     path('delete_location/<str:id>', views.delete_location, name='delete_location'),
     path('detail_location/<str:id>/', views.detail_location, name='detail_location'),
 
-    # Crud URL Storages
+    # Crud URL Storage
     path('storage_add/', views.storage_add, name='storage_add'),
     path('storage_list/', views.storage_list, name='storage_list'),
 
