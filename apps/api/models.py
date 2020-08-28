@@ -84,7 +84,25 @@ class Currency(models.Model):
     symbol = models.CharField(max_length=128)
 
     def __str__(self):
-        return self.id
+        return self.country
+
+class USA(models.Model):
+    id = models.AutoField(primary_key=True, editable=False)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
+    company_name = models.CharField(max_length=128)
+    address = models.CharField(max_length=128)
+    city = models.CharField(max_length=64)
+    country = models.CharField(max_length=64)
+    state = models.CharField(max_length=8)
+    zip = models.CharField(max_length=8)
+    phone1 = models.CharField(max_length=32)
+    phone2 = models.CharField(max_length=32)
+    email = models.EmailField(max_length=64)
+    web = models.URLField(max_length=200)
+
+    def __str__(self):
+        return self.first_name
 
 
 

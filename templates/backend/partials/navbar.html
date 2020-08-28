@@ -34,11 +34,41 @@
                 <li><a href="index3.html">Dashboard3</a></li>
               </ul>
             </li>
+            <li><a><i class="fa fa-yelp"></i>Companies <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="{% url 'usa_list' %}">USA</a></li>
+                <li><a href="#">UK</a></li>
+                <li><a href="#">UAE</a></li>
+                <li><a href="#">ASIA</a></li>
+              </ul>
+            </li>
             <li><a><i class="fa fa-plus"></i>Add <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><a href="{% url 'material_add' %}">Material</a></li>
                 <li><a href="{% url 'storage_add' %}">Storage</a></li>
                 <li><a href="{% url 'location_list' %}">Location</a></li>
+                <li><a href="{% url 'currency_list' %}">Currency</a></li>
+              </ul>
+            </li>
+            <li><a><i class="fa fa-building"></i> Data Centers <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                  <li><a href="#level1_1">IDC 3D</a>
+                  <li><a>Cyber Building<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li class="sub_menu"><a href="level2.html">GDC</a>
+                      </li>
+                      <li><a href="#level2_1">MDC</a>
+                      </li>
+                      <li><a href="#level2_2">DTP</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a href="#level1_2">Office Building<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li class="sub_menu"><a href="#">Online Servers</a> </li>
+                      <li><a href="#">Offline Servers</a> </li>
+                    </ul>
+                  </li>
               </ul>
             </li>
             <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>

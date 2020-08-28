@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Material, Member, Storage, Location
+from .models import Material, Member, Storage, Location, Currency, USA
 
 #class MaterialSerializer(serializers.HyperlinkedModelSerializer):
 class MaterialSerializer(serializers.ModelSerializer):
@@ -20,4 +20,14 @@ class StorageSerializer(serializers.ModelSerializer):
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
+        fields = '__all__'
+
+class CurrencySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Currency
+        fields = '__all__'
+
+class USASerializer(serializers.ModelSerializer):
+    class Meta:
+        model = USA
         fields = '__all__'
