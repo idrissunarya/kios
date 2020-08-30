@@ -57,6 +57,11 @@ def api_currency(request, id):
     serialized = serializers.serialize('json', q)
     return JsonResponse(serialized, safe=False)
 
+def api_usa(request):
+    q = USA.objects.all()
+    serialized = serializers.serialize('json', q)
+    return JsonResponse(serialized, safe=False)
+
 # def Authenticated user login signup and register
 def login(request):
     if request.method =='POST':

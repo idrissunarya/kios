@@ -79,6 +79,7 @@
                           <th>Delete</th>
                         </thead>
 
+                        <!--
                         <tbody>
                           {% for obj in queryset %}
                             <tr>
@@ -94,7 +95,7 @@
                                 <td>{{ obj.email }}</td>
                                 <td>
                                     <p data-placement="top" title="Detail" data-toggle="modal">
-                                    <button class="btn btn-info btn-sm fa fa-eye" onclick="dataDetail('{{ obj.id }}', '{{ obj.country }}')"></button>
+                                    <button class="btn btn-info btn-sm fa fa-eye" onclick="usaDetail('{{ obj.id }}', '{{ obj.first_name }}')"></button>
                                     </p>
                                 </td>
                                 <td>
@@ -109,7 +110,7 @@
                                 </td>
                             </tr>
                           {% endfor %}
-                        </tbody>
+                        </tbody> -->
                       </table>
                     </div>
                   </div>
@@ -170,20 +171,39 @@
 
          <script type="text/javascript" charset="utf8">
            $(document).ready(function() {
-             $('#bootstrapDataTable').DataTable(
+             var table = $('#bootstrapDataTable').DataTable(
+
                 {
-                     "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "all"]],
-                     "iDisplayLength": 10,
+                    "ajax": {
+                      "url": "../api-usa/",
+                      "type": "GET",
+                      "dataSrc": ""
+                    },
+
+                    "dataType": "JSON",
+
+                    "columns": [
+                        {"data": "first_name"},
+                        {"data": "last_name"},
+                        {"data": "company_name"},
+                        {"data": "address"},
+                        {"data": "city"},
+                        {"data": "country"},
+                        {"data": "state"},
+                        {"data": "zip"},
+                        {"data": "phone1"},
+                        {"data": "email"}
+                    ]
                 }
              );
+
            });
 
            // Currency detail
-           function dataDetail(id, country){
-                $('.modal-title').append("<p>{{ obj.country }}</p>");
-                $('#currencyDetail').modal('show');
+           function usaDetail(id, first_name){
+                $('#usaDetail').modal('show');
 
-                console.log(id, country);
+                console.log(id, first_name);
             };
 
           function sendData(id, country){

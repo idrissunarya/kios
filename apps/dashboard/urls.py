@@ -20,6 +20,7 @@ urlpatterns = [
     path('api-member/', MemberListView.as_view(), name='member-all'),
     path('api-storage/', StorageListView.as_view(), name='storage-all'),
     path('api-usa/', USAListView.as_view(), name='usa-all'),
+    path('api-usa-json/', views.api_usa, name='usaJSON'),
 
     # Crud URL Materials
     path('material_add/', views.material_add, name='material_add'),
