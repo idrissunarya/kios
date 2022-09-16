@@ -63,7 +63,7 @@ lazy-object-proxy==0.0.0
 lexicon==1.0.0
 libcomps==0.1.15
 lxml==4.4.1
-Mako==1.1.1.dev0
+Mako==1.2.2
 Markdown==3.2.2
 MarkupSafe==1.1.1
 matplotlib==3.2.2
